@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("messages")
+@RequestMapping("kafka")
 public class KafkaController {
 
     private final MessageProducer messageProducer;
@@ -15,7 +15,7 @@ public class KafkaController {
     public KafkaController(MessageProducer messageProducer) {
         this.messageProducer = messageProducer;
     }
-    @PostMapping()
+    @PostMapping("/send")
     public String sendMessage(@RequestParam("message") String message) {
         messageProducer.sendMessage("reddit.raw",message);
         return "Message sent " + message;
