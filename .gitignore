@@ -1,2 +1,3 @@
 collectors/reddit/.venv
+consumers/reddit/.venv
 .env
