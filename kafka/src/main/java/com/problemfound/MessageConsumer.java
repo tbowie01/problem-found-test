@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MessageConsumer {
-    @KafkaListener(topics = "reddit.raw",groupId = "group")
+    @KafkaListener(topics = "reddit.problems_keywords",groupId = "group")
     public void listen(String message) {
         System.out.println("Received: " + message);
     }

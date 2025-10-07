@@ -1,3 +1,4 @@
 collectors/reddit/.venv
-consumers/reddit/.venv
+consumers/reddit-filter/.venv
+consumers/reddit-keywords/.venv
 .env
