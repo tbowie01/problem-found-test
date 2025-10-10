@@ -1,6 +1,6 @@
-package com.problemfound;
+package com.problemfound.controller;
 
-import org.springframework.kafka.core.KafkaTemplate;
+import com.problemfound.producer.MessageProducer;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

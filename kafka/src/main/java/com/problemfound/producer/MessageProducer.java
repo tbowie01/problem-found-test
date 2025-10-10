@@ -1,4 +1,4 @@
-package com.problemfound;
+package com.problemfound.producer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;

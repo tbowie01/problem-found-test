@@ -1,3 +1,4 @@
+from datetime import datetime,timezone
 import praw
 from praw.models import MoreComments
 from dotenv import load_dotenv
@@ -39,10 +40,13 @@ def extract_question_answers(submission):
             continue
         question_answer_obj = {
             "id": comment.id,
+            "subreddit": submission.subreddit.display_name,
+            "post": submission.title + submission.selftext,
+            "comment": comment.body,
             "text": prefix + comment.body,
             "url": f"https://www.reddit.com{comment.permalink}",
             "source": "Reddit",
-            "timeStamp": comment.created_utc
+            "timeStamp": datetime.fromtimestamp(submission.created_utc,tz=timezone.utc).isoformat()
         }
         question_answers.append(question_answer_obj)
     return question_answers
@@ -50,10 +54,13 @@ def extract_question_answers(submission):
 def extract_submission_only(submission):
     submission_obj = {
             "id": submission.id,
+            "subreddit": submission.subreddit.display_name,
+            "post": submission.title + submission.selftext,
+            "comment": "",
             "text": submission.title + submission.selftext,
             "url": submission.url,
             "source": "Reddit",
-            "timeStamp": submission.created_utc
+            "timeStamp": datetime.fromtimestamp(submission.created_utc,tz=timezone.utc).isoformat()
         }
     return submission_obj
 
@@ -118,8 +125,8 @@ def extract_dummy_text():
     return res
 
 def send_reddit_messages(subreddit,submission_limit):
-    # messages = extract_subreddit_text(subreddit,submission_limit)
-    messages = extract_dummy_text()
+    messages = extract_subreddit_text(subreddit,submission_limit)
+    # messages = extract_dummy_text()
     for message in messages:
         producer.produce(
         "reddit.raw",
@@ -131,6 +138,6 @@ def send_reddit_messages(subreddit,submission_limit):
     producer.flush()
         
 
-new_subreddit = reddit.subreddit("AskReddit")
+new_subreddit = reddit.subreddit("smallbusiness")
 
 send_reddit_messages(new_subreddit,5)
