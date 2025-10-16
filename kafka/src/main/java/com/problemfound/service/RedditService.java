@@ -6,6 +6,8 @@ import com.problemfound.repository.RedditInfoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class RedditService {
 
@@ -20,5 +22,11 @@ public class RedditService {
         RedditInfo redditInfo = new RedditInfo(problem,reddit_id,subreddit,post,comment);
         redditInfoRepo.save(redditInfo);
         return redditInfo;
+    }
+
+    @Transactional
+    public Boolean checkIfRedditExists(String reddit_id) {
+        Optional<RedditInfo> redditInfo = redditInfoRepo.findById(reddit_id);
+        return redditInfo.isPresent();
     }
 }

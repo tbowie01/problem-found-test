@@ -13,7 +13,7 @@ producer_kafka_config = {
 
 MAX_BATCH_SIZE = 100
 CONSUME_TIMEOUT = 2.0
-RAW_TOPIC = "reddit.raw"
+RAW_TOPIC = "reddit.raw_new"
 PROCESSED_TOPIC = "reddit.problems"
 
 consumer = Consumer(consumer_kafka_config)
