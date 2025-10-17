@@ -10,8 +10,8 @@ public class RedditInfo {
     private Problem problem;
 
     @Id
-    @Column(length = 20)
-    private String reddit_id;
+    @Column(length = 20,name = "reddit_id")
+    private String redditId;
 
     @Column(length = 30)
     private String subreddit;
@@ -22,9 +22,9 @@ public class RedditInfo {
     @Column(columnDefinition = "TEXT")
     private String comment;
 
-    public RedditInfo(Problem problem, String reddit_id, String subreddit, String post, String comment) {
+    public RedditInfo(Problem problem, String redditId, String subreddit, String post, String comment) {
         this.problem = problem;
-        this.reddit_id = reddit_id;
+        this.redditId = redditId;
         this.subreddit = subreddit;
         this.post = post;
         this.comment = comment;
@@ -42,12 +42,12 @@ public class RedditInfo {
         this.problem = problem;
     }
 
-    public String getReddit_id() {
-        return reddit_id;
+    public String getRedditId() {
+        return redditId;
     }
 
-    public void setReddit_id(String reddit_id) {
-        this.reddit_id = reddit_id;
+    public void setRedditId(String reddit_id) {
+        this.redditId = reddit_id;
     }
 
     public String getSubreddit() {

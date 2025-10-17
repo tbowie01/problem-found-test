@@ -20,15 +20,17 @@ public class Problem {
     @Column(length = 50)
     private String source;
 
-    private LocalDateTime source_created;
+    @Column(name = "source_created")
+    private LocalDateTime sourceCreated;
 
-    private LocalDateTime problem_created;
+    @Column(name = "problem_created")
+    private LocalDateTime problemCreated;
 
-    public Problem(String text, String url, String source, LocalDateTime source_created) {
+    public Problem(String text, String url, String source, LocalDateTime sourceCreated) {
         this.text = text;
         this.url = url;
         this.source = source;
-        this.source_created = source_created;
+        this.sourceCreated = sourceCreated;
     }
 
     public Problem() {
@@ -61,19 +63,19 @@ public class Problem {
         this.source = source;
     }
 
-    public LocalDateTime getSource_created() {
-        return source_created;
+    public LocalDateTime getSourceCreated() {
+        return sourceCreated;
     }
 
-    public void setSource_created(LocalDateTime source_created) {
-        this.source_created = source_created;
+    public void setSourceCreated(LocalDateTime source_created) {
+        this.sourceCreated = source_created;
     }
 
-    public LocalDateTime getProblem_created() {
-        return problem_created;
+    public LocalDateTime getProblemCreated() {
+        return problemCreated;
     }
 
-    public void setProblem_created(LocalDateTime problem_created) {
-        this.problem_created = problem_created;
+    public void setProblemCreated(LocalDateTime problem_created) {
+        this.problemCreated = problem_created;
     }
 }
