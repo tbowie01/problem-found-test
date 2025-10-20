@@ -9,15 +9,35 @@ import os
 
 load_dotenv()
 
-# https://www.reddit.com/prefs/apps to create an app and get credentials
-# For testing, used .env file 
-reddit = praw.Reddit(
-    client_id= os.environ.get("REDDIT_CLIENT_ID"),
-    client_secret= os.environ.get("REDDIT_CLIENT_SECRET"),
-    username= os.environ.get("REDDIT_USERNAME"),
-    password= os.environ.get("REDDIT_PASSWORD"),
-    user_agent= os.environ.get("REDDIT_USER_AGENT")
-)
+client_id = os.environ.get("REDDIT_CLIENT_ID")
+client_secret = os.environ.get("REDDIT_CLIENT_SECRET")
+user_agent = os.environ.get("REDDIT_USER_AGENT")
+refresh_token = os.environ.get("REDDIT_REFRESH_TOKEN")
+username = os.environ.get("REDDIT_USERNAME")
+password = os.environ.get("REDDIT_PASSWORD")
+
+if not client_id or not client_secret or not user_agent:
+    raise RuntimeError("Missing required Reddit credentials. Check REDDIT_CLIENT_ID/SECRET/USER_AGENT in .env.")
+
+if refresh_token:
+    reddit = praw.Reddit(
+        client_id=client_id,
+        client_secret=client_secret,
+        user_agent=user_agent,
+        refresh_token=refresh_token,
+    )
+else:
+    if not username or not password:
+        raise RuntimeError("Username/password required when REDDIT_REFRESH_TOKEN is not set.")
+    reddit = praw.Reddit(
+        client_id=client_id,
+        client_secret=client_secret,
+        username=username,
+        password=password,
+        user_agent=user_agent,
+    )
+
+reddit.read_only = True
 
 kafka_config = {
     'bootstrap.servers': 'localhost:9092'
@@ -25,9 +45,7 @@ kafka_config = {
 
 producer = Producer(kafka_config)
 
-subreddits = []
-for subreddit in reddit.subreddits.popular(limit=1): #Change limit to None
-    subreddits.append(subreddit)
+# NOTE: Avoid calling reddit.subreddits.popular() to prevent 403s on some accounts.
     
 # For reddit posts that are questions, i.e need comments
 def extract_question_answers(submission):

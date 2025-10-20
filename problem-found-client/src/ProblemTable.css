@@ -1,0 +1,233 @@
+.pf-table {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px 28px 32px;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%);
+}
+
+.pf-table__summary {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e3e7ec;
+  color: #444444;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.pf-table__summary-count {
+  font-weight: 600;
+  color: #2a2e35;
+}
+
+.pf-table__summary-page {
+  opacity: 0.8;
+}
+
+.pf-table__wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #d7dbe0;
+}
+
+.pf-table__grid {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+  background: #ffffff;
+}
+
+.pf-table__head {
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5a5f66;
+  background: #f6f7f9;
+  padding: 16px 18px;
+  border-bottom: 1px solid #d7dbe0;
+}
+
+.pf-table__head--problem {
+  width: 55%;
+}
+
+.pf-table__head--source {
+  width: 15%;
+}
+
+.pf-table__head--url {
+  width: 15%;
+}
+
+.pf-table__head--date {
+  width: 15%;
+}
+
+.pf-table__row:nth-child(even) {
+  background: rgba(246, 247, 249, 0.6);
+}
+
+.pf-table__cell {
+  padding: 18px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #2a2e35;
+  border-bottom: 1px solid #e1e6ec;
+  vertical-align: top;
+}
+
+.pf-table__cell--problem {
+  font-weight: 500;
+}
+
+.pf-table__cell--source {
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: #6c7178;
+}
+
+.pf-table__cell--url,
+.pf-table__cell--date {
+  font-size: 12px;
+  color: #555a61;
+}
+
+.pf-table__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #d7dbe0;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.15s ease-in-out;
+}
+
+.pf-table__link:hover {
+  border-color: #1d4ed8;
+  background: rgba(29, 78, 216, 0.08);
+}
+
+.pf-table__empty {
+  padding: 48px 24px;
+  text-align: center;
+  font-size: 13px;
+  color: #6c7178;
+  background: #f6f7f9;
+  border-bottom: 1px solid #e1e6ec;
+}
+
+.pf-table__pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding-top: 8px;
+}
+
+.pf-table__pagination-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.pf-table__button {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid #d7dbe0;
+  background: #ffffff;
+  color: #2a2e35;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.pf-table__button:hover:not(:disabled) {
+  border-color: #1d4ed8;
+  color: #1d4ed8;
+  box-shadow: 0 8px 18px rgba(29, 78, 216, 0.12);
+}
+
+.pf-table__button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.pf-table__pagination-cta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: #444444;
+}
+
+.pf-table__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pf-table__input,
+.pf-table__select {
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #d7dbe0;
+  padding: 0 12px;
+  font-size: 12px;
+  font-family: inherit;
+  color: #2a2e35;
+  background: #ffffff;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.pf-table__input:focus,
+.pf-table__select:focus {
+  outline: none;
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+}
+
+@media (max-width: 960px) {
+  .pf-table {
+    padding: 20px 20px 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pf-table__summary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pf-table__pagination {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pf-table__pagination-cta {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 540px) {
+  .pf-table__wrapper {
+    border-radius: 8px;
+  }
+
+  .pf-table__button {
+    width: 32px;
+    height: 32px;
+  }
+}
